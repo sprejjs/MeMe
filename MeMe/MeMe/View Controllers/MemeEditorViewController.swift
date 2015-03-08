@@ -39,8 +39,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memeTextAttributes = [
             NSStrokeColorAttributeName : UIColor.blackColor(),
             NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSForegroundColorAttributeName : UIColor.redColor(),
-            NSStrokeWidthAttributeName: 5.0
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSStrokeWidthAttributeName: -5.0
         ]
         
         textField.defaultTextAttributes = memeTextAttributes
