@@ -14,7 +14,11 @@ class SentImagesTableViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.title = "Sent Memes"
+        self.navigationItem.title = "Sent Memes"
+    }
+    
+    @IBAction func newMeme(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil);
     }
     
     override func viewWillAppear(animated: Bool) {

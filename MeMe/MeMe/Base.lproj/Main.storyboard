@@ -85,7 +85,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="STJ-Sg-tMv">
                             <connections>
-                                <segue destination="obP-U7-xh1" kind="show" identifier="ShowHistory" id="s0y-2D-svu"/>
+                                <segue destination="obP-U7-xh1" kind="presentation" identifier="ShowHistory" id="s0y-2D-svu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -134,7 +134,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="aXV-XB-Rpm"/>
+                    <navigationItem key="navigationItem" id="aXV-XB-Rpm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xZD-hd-XY0">
+                            <connections>
+                                <action selector="newMeme:" destination="kdZ-UO-N25" id="08X-Pp-Gmc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="QyL-M6-QHn" kind="showDetail" identifier="ShowDetails" id="oga-3I-Osq"/>
                     </connections>
@@ -188,7 +194,13 @@
                             <outlet property="delegate" destination="opf-97-JVy" id="ZZA-nl-HJc"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="VCW-Vv-pyZ"/>
+                    <navigationItem key="navigationItem" id="VCW-Vv-pyZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vhq-JQ-ht6">
+                            <connections>
+                                <action selector="newMeme:" destination="opf-97-JVy" id="aOp-sP-HQr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="QyL-M6-QHn" kind="showDetail" identifier="ShowDetails" id="tIC-tB-vsW"/>
@@ -236,6 +248,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Mtq-qh-aVd">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="991-qC-eme" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yx4-dr-X2p" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rYd-NE-t90">
@@ -247,7 +260,6 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Q6k-qg-rku"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="991-qC-eme" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="324" y="290"/>
         </scene>

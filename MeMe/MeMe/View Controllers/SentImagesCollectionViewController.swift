@@ -6,10 +6,16 @@
 import UIKit
 import Foundation
 
-class SentImagesCollectionViewController : UICollectionViewController {
-    @IBOutlet weak var imageView: UIImageView!
-    
+class SentImagesCollectionViewController : UICollectionViewController {    
     var memes : [Meme]!
+    
+    @IBAction func newMeme(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = "Sent Memes"
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
