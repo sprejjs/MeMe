@@ -19,6 +19,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="92s-2F-ABD">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4IG-d8-Dyi">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -27,7 +28,7 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fot-at-Jx5"/>
-                                    <barButtonItem title="Camera" id="yqq-hv-Vu5">
+                                    <barButtonItem systemItem="camera" id="yqq-hv-Vu5">
                                         <connections>
                                             <action selector="pickAnImageFromCamera:" destination="vXZ-lx-hvc" id="osy-oe-8g1"/>
                                         </connections>
@@ -77,12 +78,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HJX-83-r6C">
-                        <barButtonItem key="leftBarButtonItem" title="Share" id="xCv-mY-BJK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="xCv-mY-BJK">
                             <connections>
                                 <action selector="openShareVie:" destination="vXZ-lx-hvc" id="fv1-87-Xo6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Sent Memes" id="STJ-Sg-tMv">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="STJ-Sg-tMv">
                             <connections>
                                 <segue destination="obP-U7-xh1" kind="show" id="s0y-2D-svu"/>
                             </connections>
@@ -101,7 +102,7 @@
             </objects>
             <point key="canvasLocation" x="1057" y="290"/>
         </scene>
-        <!--Table-->
+        <!--Sent Images Table View Controller-->
         <scene sceneID="kJc-ak-Pms">
             <objects>
                 <viewController id="kdZ-UO-N25" customClass="SentImagesTableViewController" customModule="MeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -133,13 +134,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Table" id="87U-YP-6f1"/>
+                    <tabBarItem key="tabBarItem" title="" image="tableTabIcon" id="87U-YP-6f1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RmG-IZ-JEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2605" y="-42"/>
         </scene>
-        <!--Item-->
+        <!--Sent Images Collection View Controller-->
         <scene sceneID="Rqk-5H-0nB">
             <objects>
                 <collectionViewController id="opf-97-JVy" customClass="SentImagesCollectionViewController" customModule="MeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,20 +148,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FJa-cT-ADp">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="193" height="169"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NXZ-fJ-1NI">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemeCell" id="NXZ-fJ-1NI" customClass="SentMemesCollectionViewCell" customModule="MeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="193" height="169"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb3-4n-3su">
+                                            <rect key="frame" x="0.0" y="0.0" width="193" height="169"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="imageView" destination="Sb3-4n-3su" id="u3B-0U-4um"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -168,7 +177,7 @@
                             <outlet property="delegate" destination="opf-97-JVy" id="ZZA-nl-HJc"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="zjF-wS-ci1"/>
+                    <tabBarItem key="tabBarItem" title="" image="collectionTabIcon" id="zjF-wS-ci1"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGb-Eg-vlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -212,4 +221,8 @@
             <point key="canvasLocation" x="324" y="290"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collectionTabIcon" width="30" height="30"/>
+        <image name="tableTabIcon" width="30" height="30"/>
+    </resources>
 </document>

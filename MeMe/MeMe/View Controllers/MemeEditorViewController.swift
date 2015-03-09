@@ -69,6 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func pickAnImageFromCamera (sender: AnyObject) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .Camera
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
@@ -81,9 +82,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
+
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.imageView.image = image
             self.shareButton.enabled = true
