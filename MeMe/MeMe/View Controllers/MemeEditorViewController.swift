@@ -112,7 +112,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        //only slide up if the bottom text view selected
+        if(self.txtBottom.isFirstResponder()) {
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(notification: NSNotification){
@@ -127,7 +130,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func subscribeToKeyboardNotification() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
@@ -138,7 +140,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func save() {
         var memmedImage = generateMemedImage()
-        self.meme = Meme(topCaption: self.txtTop.text, bottomCaption: self.txtBottom.text, originalImage: imageView.image!, memedImage: memmedImage)
+        meme = Meme(topCaption: self.txtTop.text, bottomCaption: self.txtBottom.text, originalImage: imageView.image!, memedImage: memmedImage)
         
         //Update shared model
         let object = UIApplication.sharedApplication().delegate
@@ -166,6 +168,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         save()
         
         var activityViewController = UIActivityViewController(activityItems: [self.meme!.memedImage], applicationActivities: nil)
+        
+        activityViewController.completionWithItemsHandler = { activity, success, items, error in
+            self.performSegueWithIdentifier("ShowHistory", sender: self)
+        }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
     }

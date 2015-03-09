@@ -34,4 +34,16 @@ class SentImagesCollectionViewController : UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.memes.count
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var detailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as MemeDetailViewController
+        
+        //The line below is a hack to instantiate outlets. Without it imageView is nil.
+        //Refer to http://stackoverflow.com/questions/12523198/storyboard-instantiateviewcontrollerwithidentifier-not-setting-iboutlets for details
+        print(detailViewController.view)
+        detailViewController.imageView.image = self.memes[indexPath.item].memedImage
+        
+        self.navigationController!.pushViewController(detailViewController, animated: true)
+    }
 }
