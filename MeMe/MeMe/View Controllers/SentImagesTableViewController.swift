@@ -25,7 +25,7 @@ class SentImagesTableViewController : UITableViewController {
         super.viewWillAppear(animated)
         
         let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as AppDelegate
+        let appDelegate = object as! AppDelegate
         
         self.memes = appDelegate.memes
     }
@@ -36,9 +36,9 @@ class SentImagesTableViewController : UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("MemeCell") as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MemeCell")!
         
-        var meme = self.memes[indexPath.item]
+        let meme = self.memes[indexPath.item]
         
         cell.imageView?.image = meme.memedImage
         cell.textLabel?.text = meme.topCaption
@@ -48,7 +48,7 @@ class SentImagesTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var detailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as MemeDetailViewController
+        let detailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         
         //The line below is a hack to instantiate outlets. Without it imageView is nil.
         //Refer to http://stackoverflow.com/questions/12523198/storyboard-instantiateviewcontrollerwithidentifier-not-setting-iboutlets for details

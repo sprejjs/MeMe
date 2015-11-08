@@ -82,7 +82,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.imageView.image = image
@@ -123,7 +123,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
     }
     
@@ -138,12 +138,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func save() {
-        var memmedImage = generateMemedImage()
-        meme = Meme(topCaption: self.txtTop.text, bottomCaption: self.txtBottom.text, originalImage: imageView.image!, memedImage: memmedImage)
+        let memmedImage = generateMemedImage()
+        meme = Meme(topCaption: self.txtTop.text!, bottomCaption: self.txtBottom.text!, originalImage: imageView.image!, memedImage: memmedImage)
         
         //Update shared model
         let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as AppDelegate
+        let appDelegate = object as! AppDelegate
         appDelegate.memes.append(self.meme!)
     }
     
@@ -166,7 +166,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func openShareVie(sender: UIBarButtonItem) {
         save()
         
-        var activityViewController = UIActivityViewController(activityItems: [self.meme!.memedImage], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [self.meme!.memedImage], applicationActivities: nil)
         
         activityViewController.completionWithItemsHandler = { activity, success, items, error in
             self.performSegueWithIdentifier("ShowHistory", sender: self)

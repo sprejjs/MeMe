@@ -21,16 +21,16 @@ class SentImagesCollectionViewController : UICollectionViewController {
         super.viewWillAppear(animated)
         
         let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as AppDelegate
+        let appDelegate = object as! AppDelegate
         
         self.memes = appDelegate.memes
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCell", forIndexPath: indexPath) as SentMemesCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCell", forIndexPath: indexPath) as! SentMemesCollectionViewCell
         
-        var meme = self.memes[indexPath.item]
+        let meme = self.memes[indexPath.item]
         
         cell.imageView?.image = meme.memedImage
         
@@ -43,7 +43,7 @@ class SentImagesCollectionViewController : UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        var detailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as MemeDetailViewController
+        let detailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         
         //The line below is a hack to instantiate outlets. Without it imageView is nil.
         //Refer to http://stackoverflow.com/questions/12523198/storyboard-instantiateviewcontrollerwithidentifier-not-setting-iboutlets for details
